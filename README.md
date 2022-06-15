@@ -12,20 +12,21 @@ written to disk from a PVH DispVM.
 First identify all the names of all the linux kernels that are in use,
 for instance by looking at the directory names in 
 
-> /var/lib/qubes/vm-kernels
+>   /var/lib/qubes/vm-kernels
 
 For example on R4.1 you might see a directory named 5.10.90-1.fc32 in
 /var/lib/qubes/vm-kernels. You can also directly find which kernel a vm uses
 by typing 
-
-> qvm-prefs [vmname] kernel
+```
+  qvm-prefs [vmname] kernel
+```
 
 ### Step 2. 
 
 Once you have identified the kernel to patch, say 5.10.90-1.fc32, issue
-
-> sudo sh ./patch_initramfs.py 5.10.90-1.fc32
-
+```
+  sudo sh ./patch_initramfs.py 5.10.90-1.fc32
+```
 This will patch the /init file in the initramfs of the kernel 5.10.90-1.fc32.
 
 ### Step 3. 
