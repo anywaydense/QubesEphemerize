@@ -1,6 +1,6 @@
 # Fully ephemeral DispVM's
 
-The steps below outline how to make all PVH DispVM's permanently fully ephemeral
+The steps below outline how to make all PVH DispVM's permanently fully ephemeral.
 All data written to the disk will be encrypted with an ephemeral encryption key
 only stored in RAM. Currently Qubes implements this (when ephemeral=True) only
 for data written to xvda but not for data written to xvdb (i.e /rw) or data
@@ -8,14 +8,19 @@ written to swap. This patch fixes the issue and encrypts ephemerally all data
 written to disk from a PVH DispVM.
 
 *Step 1.* First identify all the names of all the linux kernels that are in use,
-for instance by looking at the directory names in /var/lib/qubes/vm-kernels.
+for instance by looking at the directory names in 
+
+> /var/lib/qubes/vm-kernels
+
 For example on R4.1 you might see a directory named 5.10.90-1.fc32 in
 /var/lib/qubes/vm-kernels. You can also directly find which kernel a vm uses
-by typing "qvm-prefs [vmname] kernel"
+by typing 
+
+> qvm-prefs [vmname] kernel
 
 *Step 2.* Once you have identified the kernel to patch, say 5.10.90-1.fc32, issue
 
-  sudo sh ./patch_initramfs.py 5.10.90-1.fc32
+> sudo sh ./patch_initramfs.py 5.10.90-1.fc32
 
 This will patch the /init file in the initramfs of the kernel 5.10.90-1.fc32.
 
@@ -23,15 +28,13 @@ Step 3. Now you need to patch the DispVM code of Qubesd so that all DispVM
 are by default generated with the xvda and xvdb set to read-only and xvdc
 set as ephemeral. This amounts to patching the file
 
-   /usr/lib/python3.8/site-packages/qubes/vm/dispvm.py
+>   /usr/lib/python3.8/site-packages/qubes/vm/dispvm.py
 
-with
+by appending on line 138,
 
-138a139,142
 >         self.volume_config['root']['rw'] = False
 >         self.volume_config['private']['rw'] = False
 >         self.volume_config['volatile']['ephemeral'] = True
->
 
 Alternatively you can copy the dispvm.py included here. Reboot the system
 and you are done.
