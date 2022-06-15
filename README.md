@@ -51,9 +51,9 @@ and you are done.
 An alernative to patching the code of dispvm is as follows: Given an
 AppVM you can issue
 
-  qvm-volume config appvm:root rw 0
-  qvm-volume config appvm:private rw 0
-  qvm-volume config appvm:volatile ephemeral 1
+>  qvm-volume config appvm:root rw 0
+>  qvm-volume config appvm:private rw 0
+>  qvm-volume config appvm:volatile ephemeral 1
 
 Then all the DispVM's arising from "qvm-run --dispvm appvm"
 will be fully ephemeral.
