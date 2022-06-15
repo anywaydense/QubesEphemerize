@@ -51,11 +51,11 @@ and you are done.
 An alernative to patching the code of dispvm is as follows: Given an
 AppVM you can issue
 
-
+```
   qvm-volume config appvm:root rw 0
   qvm-volume config appvm:private rw 0
   qvm-volume config appvm:volatile ephemeral 1
-
+```
 
 Then all the DispVM's arising from "qvm-run --dispvm appvm"
 will be fully ephemeral.
@@ -77,9 +77,10 @@ The only HVM based DispVM's on your system are usually sys-usb and sys-net.
 In the unlikely event that they refuse to boot after these changes issue
 the command
 
+```  
   qvm-volume config sys-usb:root rw 1
   qvm-volume config sys-usb:private rw 1
-
+```
 which should fix the issue, as it effectively disables the patch in initramfs.
 
 
