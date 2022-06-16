@@ -2,10 +2,18 @@
 
 The steps below outline how to make all PVH DispVM's permanently fully ephemeral.
 All data written to the disk will be encrypted with an ephemeral encryption key
-only stored in RAM. Currently Qubes implements this (when ephemeral=True and vm:root rw 0) 
-only for data written to xvda but not for data written to xvdb (i.e /rw) or data
-written to swap. This patch fixes the issue and encrypts ephemerally all data 
-written to disk from a PVH DispVM.
+only stored in RAM. The encryption and encryption key generation is handled by dom0 and is
+thus inaccessible to the vm. Currently Qubes implements this (when ephemeral=True and vm:root rw 0) 
+only for data written to xvda and swap but not for data written to xvdb (i.e /rw). This patch 
+fixes the issue and encrypts ephemerally all data written to disk from a PVH DispVM.
+
+This is accomplished by making xvda, xvdb read-only and ephemeral=True the defaults for DispVM's (three line 
+patching of dispvm.py) and by patching /init of initramfs of the pvh kernel so that all data writes are routed 
+to xvdc using dmapper. This routing is already partially accomplished in qubes by mapping all writes
+to xvda to dmroot when vm:root rw is set to False. The patch now routes in addition all writes to xvdb 
+to dmhome and seamlessly relabels in fstab xvdb to dmhome, before /sbin/init is initialized; since xvda
+is already ephemeral this is of no consequence to the user. The fact that xvda and xvdb are set to be readonly and 
+only xvdc is writeable and ephemerally encrypted ensures that no data escape is possible. 
 
 ### Step 1. 
 
