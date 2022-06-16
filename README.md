@@ -51,10 +51,9 @@ by appending on line 138,
 >         self.volume_config['private']['rw'] = False
 >         self.volume_config['volatile']['ephemeral'] = True
 
-Alternatively you can copy the dispvm.py included here. Reboot the system
-and you are done.
+Alternatively you can copy the dispvm.py included here. 
 
-### Optional Step 4
+### Step 4
 
 Find the list of all HVM DispVM's in the system.
 For each such VM, say in this case called hvmvm, issue
@@ -63,7 +62,8 @@ qvm-volume config hvmvm:private rw 1
 ```
 Usually hvmvm will only be usb-sys and usb-net.
 The command above disables the patch for these HVM's. I plan on fixing this issue in the
-next iteration of the patch. 
+next iteration of the patch. Reboot the system
+and you are done.
 
 ## Additional comments*
 
