@@ -56,11 +56,12 @@ and you are done.
 
 ### Optional Step 4
 
-Just in case issue
+Find the list of all HVM DispVM's in the system.
+For each such VM, say in this case called hvmvm, issue
 ```
 qvm-volume config hvmvm:private rw 1
 ```
-for all DispVM hvmvm's that you have in your system. Usually it's just usb-sys and usb-net.
+Usually hvmvm will only be usb-sys and usb-net.
 The command above disables the patch for these HVM's. I plan on fixing this issue in the
 next iteration of the patch. 
 
