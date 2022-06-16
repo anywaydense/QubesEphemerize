@@ -101,5 +101,10 @@ the command
 ```
 which should fix the issue, as it effectively disables the patch in initramfs.
 
+### Donations
 
-
+XMR donations to 
+```
+469Mxn3kiEXQYK91CkmQVFggwxNzzW1NLEUUMGJ7poZuGAUxsXhHW3UcuWy6JMhW6N5Yfik2bTkZfY9BAKXFiSJUHgsiqhc
+```
+are appreciated
