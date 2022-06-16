@@ -11,9 +11,9 @@ This is accomplished by making xvda, xvdb read-only and ephemeral=True the defau
 patching of dispvm.py) and by patching /init of initramfs of the pvh kernel so that all data writes are routed 
 to xvdc using dmapper. This routing is already partially accomplished in qubes by mapping all writes
 to xvda to dmroot when vm:root rw is set to False. The patch now routes in addition all writes to xvdb 
-to dmhome and seamlessly relabels in fstab xvdb to dmhome, before /sbin/init is initialized; since xvda
-is already ephemeral this is of no consequence to the user. The fact that xvda and xvdb are set to be readonly and 
-only xvdc is writeable and ephemerally encrypted ensures that no data escape is possible. 
+to dmhome and seamlessly relabels in fstab xvdb to dmhome, before /sbin/init is initialized.
+The fact that xvda and xvdb are set to be readonly and only xvdc is writeable and ephemerally encrypted 
+ensures that no data escape is possible. 
 
 ### Step 1. 
 
