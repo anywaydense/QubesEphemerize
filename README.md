@@ -2,8 +2,8 @@
 
 The steps below outline how to make all PVH DispVM's permanently fully ephemeral.
 All data written to the disk will be encrypted with an ephemeral encryption key
-only stored in RAM. Currently Qubes implements this (when ephemeral=True) only
-for data written to xvda but not for data written to xvdb (i.e /rw) or data
+only stored in RAM. Currently Qubes implements this (when ephemeral=True and vm:root rw 0) 
+only for data written to xvda but not for data written to xvdb (i.e /rw) or data
 written to swap. This patch fixes the issue and encrypts ephemerally all data 
 written to disk from a PVH DispVM.
 
