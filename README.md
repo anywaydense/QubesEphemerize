@@ -55,15 +55,13 @@ Alternatively you can copy the dispvm.py included here.
 
 ### Step 4
 
-Find the list of all HVM DispVM's in the system.
-For each such VM, say in this case called hvmvm, issue
+Find the list of all HVM DispVM's in the system (usually just sys-usb and sys-net).
+For each such VM, say in this case sys-net, issue
 ```
-qvm-volume config hvmvm:private rw 1
+qvm-volume config sys-net:private rw 1
 ```
-Usually hvmvm will only be usb-sys and usb-net.
 The command above disables the patch for these HVM's. I plan on fixing this issue in the
-next iteration of the patch. Reboot the system
-and you are done.
+next iteration of the patch. Reboot the system and you are done.
 
 ## Additional comments*
 
