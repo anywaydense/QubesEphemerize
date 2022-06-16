@@ -54,6 +54,16 @@ by appending on line 138,
 Alternatively you can copy the dispvm.py included here. Reboot the system
 and you are done.
 
+### Optional Step 4
+
+Just in case issue
+```
+qvm-volume config hvmvm:private rw 1
+```
+for all DispVM hvmvm's that you have in your system. Usually it's just usb-sys and usb-net.
+The command above disables the patch for these HVM's. I plan on fixing this issue in the
+next iteration of the patch. 
+
 ## Additional comments*
 
 ### Note 1. 
